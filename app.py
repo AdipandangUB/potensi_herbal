@@ -290,10 +290,23 @@ def reproject_array_to_wgs84(arr, transform, crs_wkt):
     return dst, bounds, dst_transform
 
 
+def get_colormap(cmap_name):
+    """Ambil colormap matplotlib secara kompatibel lintas versi.
+    matplotlib >= 3.9 menghapus cm.get_cmap(); gunakan matplotlib.colormaps[...]."""
+    try:
+        return cm.colormaps[cmap_name]  # matplotlib >= 3.6
+    except (AttributeError, KeyError, TypeError):
+        try:
+            return cm.get_cmap(cmap_name)  # matplotlib lama
+        except AttributeError:
+            import matplotlib.pyplot as plt
+            return plt.get_cmap(cmap_name)
+
+
 def array_to_png_overlay(arr, cmap_name="RdYlGn", vmin=0.0, vmax=1.0):
     """Ubah array float (0-1 atau lainnya) jadi PNG RGBA base64 (nan = transparan)."""
     norm = mcolors.Normalize(vmin=vmin, vmax=vmax, clip=True)
-    cmap = cm.get_cmap(cmap_name)
+    cmap = get_colormap(cmap_name)
     rgba = cmap(norm(np.nan_to_num(arr, nan=vmin)))
     rgba[..., 3] = np.where(np.isnan(arr), 0.0, 0.85)  # alpha
     rgba_uint8 = (rgba * 255).astype(np.uint8)
