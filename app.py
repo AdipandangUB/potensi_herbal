@@ -472,7 +472,7 @@ def fit_statistical_sdm(rasters, presence_rowcol, model_type="Random Forest", n_
 
 st.title("🌿 WebGIS Analytics Potensi Tumbuh Tanaman Herbal TNBTS")
 st.caption(
-    "Species Distribution Modelling berbasis 8 layer raster reklasifikasi "
+    "Species Distribution Modelling (SDM) berbasis 8 layer raster reklasifikasi "
     "(Ketinggian, Curah Hujan, LST, Kelerengan, Kelembapan, NDVI, Jarak "
     "Pemukiman, Jenis Tanah) — Taman Nasional Bromo Tengger Semeru."
 )
@@ -526,7 +526,7 @@ with st.spinner("Memuat & menyelaraskan raster..."):
 st.sidebar.success(f"✅ 8 layer raster dimuat — grid {grid_w} x {grid_h} px")
 
 # ---- Sidebar: pilih mode SDM ------------------------------------------------
-st.sidebar.header("🧬 2. Metode SDM")
+st.sidebar.header("🧬 2. Metode Species Distribution Modelling (SDM)")
 mode = st.sidebar.radio(
     "Pilih metode pemodelan:",
     ["Fuzzy Environmental Envelope (MCE)", "Statistik / Machine Learning (presence-background)"],
