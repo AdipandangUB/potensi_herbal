@@ -470,7 +470,7 @@ def fit_statistical_sdm(rasters, presence_rowcol, model_type="Random Forest", n_
 # 5. ANTARMUKA STREAMLIT
 # ==============================================================================
 
-st.title("🌿 WebGIS SDM — Potensi Tumbuh Tanaman Herbal TNBTS")
+st.title("🌿 WebGIS Analytics Potensi Tumbuh Tanaman Herbal TNBTS")
 st.caption(
     "Species Distribution Modelling berbasis 8 layer raster reklasifikasi "
     "(Ketinggian, Curah Hujan, LST, Kelerengan, Kelembapan, NDVI, Jarak "
